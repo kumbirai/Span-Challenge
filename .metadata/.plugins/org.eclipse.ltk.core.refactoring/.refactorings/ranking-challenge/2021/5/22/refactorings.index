@@ -29,3 +29,9 @@
 1622132889909	Extract local variable 'lastKey'
 1622133376799	Delete element
 1622134469832	Inline local variable 'output'
+1622142224025	Rename local variable 'ranking'
+1622142396857	Rename local variable 'items'
+1622142427872	Rename local variable 'teams'
+1622142538608	Rename local variable 'item'
+1622142962913	Rename type 'TeamScore'
+1622143113564	Rename method 'extractTeamNameAndScoreIntoArray'

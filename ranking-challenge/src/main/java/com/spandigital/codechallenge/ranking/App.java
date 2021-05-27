@@ -47,7 +47,7 @@ public class App
 	public static void main(String... args)
 	{
 		if (args.length != 1)
-			throw new UnsupportedOperationException("Should pass 1 (one) text input file name delimited with quotes.");
+			throw new MissingRequiredArgumentException("Should pass 1 (one) text input file name delimited with quotes.");
 
 		String filename = args[0];
 

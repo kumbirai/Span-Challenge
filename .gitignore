@@ -30,6 +30,6 @@ hs_err_pid*
 **/.settings/**
 **/.sonarlint/**
 **/target/**
-**/.metadata
-**/.bindings
-**/bin
+**/.metadata/**
+**/.bindings/**
+**/bin/**

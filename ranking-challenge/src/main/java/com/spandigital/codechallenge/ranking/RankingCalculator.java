@@ -138,42 +138,42 @@ public class RankingCalculator
 	{
 		String[] teamScores = match.split(",");
 
-		String[] teamA = extractTeamNameAndScoreIntoArray(teamScores[0]);
-		String[] teamB = extractTeamNameAndScoreIntoArray(teamScores[1]);
+		Score teamA = extractTeamNameAndScore(teamScores[0]);
+		Score teamB = extractTeamNameAndScore(teamScores[1]);
 
-		if (Integer.parseInt(teamA[1]) == Integer.parseInt(teamB[1]))
+		if (teamA.getScore() == teamB.getScore())
 		{
-			updateTeamScores(Arrays.asList(new Team(0, teamA[0], DRAW_POINTS), new Team(0, teamB[0], DRAW_POINTS)));
+			updateTeamScores(Arrays.asList(new Team(0, teamA.getName(), DRAW_POINTS), new Team(0, teamB.getName(), DRAW_POINTS)));
 		}
 
-		if (Integer.parseInt(teamA[1]) > Integer.parseInt(teamB[1]))
+		if (teamA.getScore() > teamB.getScore())
 		{
-			updateTeamScores(Arrays.asList(new Team(0, teamA[0], WIN_POINTS), new Team(0, teamB[0], LOSE_POINTS)));
+			updateTeamScores(Arrays.asList(new Team(0, teamA.getName(), WIN_POINTS), new Team(0, teamB.getName(), LOSE_POINTS)));
 		}
 
-		if (Integer.parseInt(teamA[1]) < Integer.parseInt(teamB[1]))
+		if (teamA.getScore() < teamB.getScore())
 		{
-			updateTeamScores(Arrays.asList(new Team(0, teamA[0], LOSE_POINTS), new Team(0, teamB[0], WIN_POINTS)));
+			updateTeamScores(Arrays.asList(new Team(0, teamA.getName(), LOSE_POINTS), new Team(0, teamB.getName(), WIN_POINTS)));
 		}
 	}
 
 	/**
 	 * Purpose:<br>
 	 * <br>
-	 * extractTeamNameAndScoreIntoArray<br>
+	 * extractTeamNameAndScore<br>
 	 * <br>
 	 * @param teamScore
 	 * @return<br>
 	 * <br>
 	 */
-	private String[] extractTeamNameAndScoreIntoArray(String teamScore)
+	private Score extractTeamNameAndScore(String teamScore)
 	{
 		int idx = teamScore.lastIndexOf(" ");
-		return new String[]
-		{ teamScore.substring(0, idx)
+
+		return new Score(teamScore.substring(0, idx)
 				.trim(),
-				teamScore.substring(idx)
-						.trim() };
+				Integer.parseInt(teamScore.substring(idx)
+						.trim()));
 	}
 
 	/**
@@ -236,29 +236,29 @@ public class RankingCalculator
 				.collect(Collectors.toList());
 
 		ToIntFunction<Team> pointsExtractor = Team::getPoints;
-		SortedMap<Integer, List<Team>> ranking = new TreeMap<>();
-		pointsRanked.forEach(item ->
+		SortedMap<Integer, List<Team>> rankings = new TreeMap<>();
+		pointsRanked.forEach(team ->
 		{
-			Integer points = pointsExtractor.applyAsInt(item);
+			Integer points = pointsExtractor.applyAsInt(team);
 
-			if (ranking.isEmpty())
+			if (rankings.isEmpty())
 			{
-				ranking.put(1, new LinkedList<>());
+				rankings.put(1, new LinkedList<>());
 			}
 			else
 			{
-				Integer rank = ranking.lastKey();
-				List<Team> items = ranking.get(rank);
-				if (!points.equals(pointsExtractor.applyAsInt(items.get(0))))
+				Integer rank = rankings.lastKey();
+				List<Team> teamsList = rankings.get(rank);
+				if (!points.equals(pointsExtractor.applyAsInt(teamsList.get(0))))
 				{
-					ranking.put(rank + items.size(), new LinkedList<>());
+					rankings.put(rank + teamsList.size(), new LinkedList<>());
 				}
 			}
 
-			Integer lastKey = ranking.lastKey();
-			item.setRank(lastKey);
-			ranking.get(lastKey)
-					.add(item);
+			Integer lastKey = rankings.lastKey();
+			team.setRank(lastKey);
+			rankings.get(lastKey)
+					.add(team);
 		});
 
 		return pointsRanked.stream()
