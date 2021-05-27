@@ -1,0 +1,113 @@
+/*
+ Copyright (c) 2021
+
+ All rights reserved.
+ */
+package com.spandigital.codechallenge.ranking;
+
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+/**
+ * <p><b>Purpose:</b><br>
+ * <br>
+ *
+ * <p><b>Title:</b> RankingCalculator<br>
+ * <br>
+ *
+ * @author Kumbirai 'Coach' Mundangepfupfu<br>
+ * @date 26 May 2021<br>
+ * @version 1.0<br>
+ *
+ * <b>Revision:</b>
+ * <br>
+ *					
+ */
+public class RankingCalculator
+{
+	private static final Logger LOGGER = Logger.getLogger(RankingCalculator.class.getName());
+
+	private String filename;
+	private List<String> lines;
+	private List<Team> teams;
+
+	/**
+	 * Constructor: @param filename
+	 */
+	public RankingCalculator(String filename)
+	{
+		super();
+		this.filename = filename;
+		teams = new ArrayList<>();
+	}
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * calculateRanking<br>
+	 * <br><br>
+	 * <br>
+	 * @throws IOException 
+	 */
+	public void calculateRanking() throws IOException
+	{
+		readInputFile();
+		determinePoints();
+		createOutputFile();
+	}
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * readInputFile<br>
+	 * <br><br>
+	 * <br>
+	 * @throws IOException 
+	 * @throws  
+	 */
+	private void readInputFile() throws IOException
+	{
+		Path filePath = FileSystems.getDefault()
+				.getPath("", this.filename)
+				.toAbsolutePath();
+
+		String scoresFile = filePath.toString();
+
+		LOGGER.log(Level.INFO, "SCORES: {0}", scoresFile);
+
+		try (Stream<String> stream = Files.lines(Paths.get(scoresFile)))
+		{
+			lines = stream.collect(Collectors.toList());
+		}
+	}
+
+	private void determinePoints()
+	{
+		lines.forEach(RankingCalculator::determinePoints);
+	}
+	
+	private void determinePoints(String match) {
+		
+	}
+
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * createOutputFile<br>
+	 * <br><br>
+	 * <br>
+	 */
+	private void createOutputFile()
+	{
+	}
+}

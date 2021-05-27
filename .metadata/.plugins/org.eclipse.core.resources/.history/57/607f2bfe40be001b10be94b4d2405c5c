@@ -1,0 +1,92 @@
+/*
+ Copyright (c) 2021
+
+ All rights reserved.
+ */
+package com.spandigital.codechallenge.ranking;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * <p><b>Purpose:</b><br>
+ * <br>
+ *
+ * <p><b>Title:</b> RankingCalculator<br>
+ * <br>
+ *
+ * @author Kumbirai 'Coach' Mundangepfupfu<br>
+ * @date 26 May 2021<br>
+ * @version 1.0<br>
+ *
+ * <b>Revision:</b>
+ * <br>
+ *					
+ */
+public class RankingCalculator
+{
+	private static final Logger LOGGER = Logger.getLogger(RankingCalculator.class.getName());
+
+	String filename;
+
+	/**
+	 * Constructor: @param filename
+	 */
+	public RankingCalculator(String filename)
+	{
+		super();
+		this.filename = filename;
+	}
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * calculateRanking<br>
+	 * <br><br>
+	 * <br>
+	 */
+	public void calculateRanking()
+	{
+		readInputFile();
+	}
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * readInputFile<br>
+	 * <br><br>
+	 * <br>
+	 * @throws IOException 
+	 * @throws  
+	 */
+	private void readInputFile() throws IOException
+	{
+		Path filePath = FileSystems.getDefault()
+				.getPath("", this.filename)
+				.toAbsolutePath();
+
+		String scoresFile = filePath.toString();
+
+		LOGGER.log(Level.FINEST, App.LINE);
+		LOGGER.log(Level.FINEST, "SCORES: {}", scoresFile);
+		LOGGER.log(Level.FINEST, App.LINE);
+
+		List<String> lines = new LinkedList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath.toFile())))
+		{
+			String line;
+			while ((line = br.readLine()) != null)
+			{
+				lines.add(line);
+			}
+		}
+	}
+}

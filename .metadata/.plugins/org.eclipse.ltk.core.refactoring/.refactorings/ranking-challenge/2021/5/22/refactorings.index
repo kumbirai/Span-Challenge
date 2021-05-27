@@ -1,0 +1,31 @@
+1622104407437	Inline local variable 'scoresFile'
+1622104489557	Rename local variable 'filePath'
+1622106123166	Rename field 'lines'
+1622111983986	Rename local variable 'resultA'
+1622111993047	Rename local variable 'resultB'
+1622112013809	Rename local variable 'first'
+1622112021485	Rename local variable 'second'
+1622116160206	Copy file
+1622116543499	Delete element
+1622116784070	Inline local variable 'output'
+1622117504108	Delete element
+1622117789142	Rename method 'extractScore'
+1622117831432	Rename method 'extractTeamNameAndScore'
+1622120454901	Rename field 'scores'
+1622120479149	Rename local variable 'scores'
+1622121045973	Extract method 'getFilePath'
+1622121134330	Inline local variable 'scoreFilePath'
+1622121220802	Rename local variable 'scoreFilePath'
+1622122985895	Delete element
+1622124440832	Extract method 'rankTeams'
+1622126368219	Rename local variable 'ranked'
+1622130032494	Extract local variable 'thenComparing'
+1622130951372	Inline local variable 'thenComparing'
+1622130970828	Inline local variable 'propertyExtractor'
+1622131414422	Extract local variable 'propertyExtractor'
+1622131437227	Extract local variable 'reversed'
+1622131521964	Rename local variable 'propertyComparator'
+1622132799105	Rename local variable 'property'
+1622132889909	Extract local variable 'lastKey'
+1622133376799	Delete element
+1622134469832	Inline local variable 'output'

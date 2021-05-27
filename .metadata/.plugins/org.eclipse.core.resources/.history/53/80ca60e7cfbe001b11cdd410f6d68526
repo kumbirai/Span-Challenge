@@ -1,0 +1,74 @@
+/*
+ Copyright (c) 2021
+
+ All rights reserved.
+ */
+package com.spandigital.codechallenge.ranking;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Test;
+
+/**
+ * <p><b>Purpose:</b><br>
+ * <br>
+ *
+ * <p><b>Title:</b> RankingCalculatorTest<br>
+ * <br>
+ *
+ * @author Kumbirai 'Coach' Mundangepfupfu<br>
+ * @date 26 May 2021<br>
+ * @version 1.0<br>
+ *
+ * <b>Revision:</b>
+ * <br>
+ *					
+ */
+class RankingCalculatorTest
+{
+	/**
+	 * Constructor:
+	 */
+	public RankingCalculatorTest()
+	{
+		super();
+	}
+
+	@Test
+	void test_constructor_fileNotFound()
+	{
+		assertThrows(IOException.class, () ->
+		{
+			new RankingCalculator("test.txt");
+		});
+	}
+
+	@Test
+	void test_calculateRanking_equalScores()
+	{
+		RankingCalculator rankingCalculator = new RankingCalculator(Arrays.asList("Lions 3, Snakes 3"));
+		rankingCalculator.calculateRanking();
+		String expected = 
+	}
+
+	private String readOutputFile() throws IOException
+	{
+		Path scoreFilePath = FileSystems.getDefault()
+				.getPath("", RankingCalculator.OUTPUT_FILE)
+				.toAbsolutePath();
+		String output;
+		try (Stream<String> stream = Files.lines(scoreFilePath))
+		{
+			output = stream.collect(Collectors.joining(System.lineSeparator()));
+		}
+		return output;
+	}
+}

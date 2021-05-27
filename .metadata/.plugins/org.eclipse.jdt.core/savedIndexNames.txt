@@ -1,0 +1,11 @@
+INDEX VERSION 1.131+C:\Code\Span-Challenge\.metadata\.plugins\org.eclipse.jdt.core
+2346113184.index
+661255922.index
+1073186930.index
+1991655398.index
+99453604.index
+512542795.index
+1957024903.index
+369545942.index
+2249117712.index
+1044693289.index

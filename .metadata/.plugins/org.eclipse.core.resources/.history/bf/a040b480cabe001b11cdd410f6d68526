@@ -1,0 +1,50 @@
+/*
+ Copyright (c) 2021
+
+ All rights reserved.
+ */
+package com.spandigital.codechallenge.ranking;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import org.junit.jupiter.api.Test;
+
+/**
+ * <p><b>Purpose:</b><br>
+ * <br>
+ *
+ * <p><b>Title:</b> RankingCalculatorTest<br>
+ * <br>
+ *
+ * @author Kumbirai 'Coach' Mundangepfupfu<br>
+ * @date 26 May 2021<br>
+ * @version 1.0<br>
+ *
+ * <b>Revision:</b>
+ * <br>
+ *					
+ */
+class RankingCalculatorTest
+{
+	private static final Logger LOGGER = Logger.getLogger(RankingCalculatorTest.class.getName());
+
+	/**
+	 * Constructor:
+	 */
+	public RankingCalculatorTest()
+	{
+		super();
+	}
+
+	@Test
+	void test_calculateRanking_fileNotFound()
+	{
+		assertThrows(IOException.class, () ->
+		{
+			new RankingCalculator("test.txt");
+		});
+	}
+}
