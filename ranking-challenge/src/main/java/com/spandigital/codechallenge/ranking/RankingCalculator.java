@@ -104,7 +104,8 @@ public class RankingCalculator
 	public void calculateRanking() throws IOException
 	{
 		matches.forEach(this::determinePoints);
-		createOutputFile();
+		List<Team> rankedTeams = rankTeams();
+		createOutputFile(rankedTeams);
 	}
 
 	/**
@@ -207,27 +208,12 @@ public class RankingCalculator
 	/**
 	 * Purpose:<br>
 	 * <br>
-	 * createOutputFile<br>
-	 * <br><br>
-	 * <br>
-	 * @throws IOException 
-	 */
-	private void createOutputFile() throws IOException
-	{
-		//
-		Path outputFilePath = getFilePath(OUTPUT_FILE);
-		Files.write(outputFilePath, rankTeams());
-	}
-
-	/**
-	 * Purpose:<br>
-	 * <br>
 	 * rankTeams<br>
 	 * <br>
 	 * @return<br>
 	 * <br>
 	 */
-	private List<String> rankTeams()
+	private List<Team> rankTeams()
 	{
 		List<Team> pointsRanked = teams.stream()
 				.sorted(Comparator.comparing(Team::getPoints)
@@ -261,8 +247,24 @@ public class RankingCalculator
 					.add(team);
 		});
 
-		return pointsRanked.stream()
+		return pointsRanked;
+	}
+
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * createOutputFile<br>
+	 * <br>
+	 * @param rankedTeams
+	 * @throws IOException<br>
+	 * <br>
+	 */
+	private void createOutputFile(List<Team> rankedTeams) throws IOException
+	{
+		//
+		Path outputFilePath = getFilePath(OUTPUT_FILE);
+		Files.write(outputFilePath, rankedTeams.stream()
 				.map(Team::toString)
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()));
 	}
 }
