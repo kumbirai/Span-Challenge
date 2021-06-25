@@ -33,4 +33,7 @@ hs_err_pid*
 **/.metadata/**
 **/.bindings/**
 **/bin/**
-**/.metadata
+
+# IntelliJ Files
+*.iml
+**/.idea/**

@@ -16,17 +16,16 @@ import lombok.Data;
  * <br>
  *
  * @author Kumbirai 'Coach' Mundangepfupfu<br>
- * @date 27 May 2021<br>
  * @version 1.0<br>
  *
  * <b>Revision:</b>
  * <br>
- *					
+ * @date 27 May 2021<br>
  */
 @Data
 @AllArgsConstructor
 public class Score
 {
-	private String name;
-	private int score;
+    private String name;
+    private int score;
 }

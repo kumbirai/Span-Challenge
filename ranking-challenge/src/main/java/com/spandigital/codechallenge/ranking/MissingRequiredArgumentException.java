@@ -13,25 +13,24 @@ package com.spandigital.codechallenge.ranking;
  * <br>
  *
  * @author Kumbirai 'Coach' Mundangepfupfu<br>
- * @date 27 May 2021<br>
  * @version 1.0<br>
  *
  * <b>Revision:</b>
  * <br>
- *					
+ * @date 27 May 2021<br>
  */
 public class MissingRequiredArgumentException extends RuntimeException
 {
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -4339596283898606878L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -4339596283898606878L;
 
-	/**
-	 * Constructor: @param message
-	 */
-	public MissingRequiredArgumentException(String message)
-	{
-		super(message);
-	}
+    /**
+     * Constructor: @param message
+     */
+    public MissingRequiredArgumentException(String message)
+    {
+        super(message);
+    }
 }
