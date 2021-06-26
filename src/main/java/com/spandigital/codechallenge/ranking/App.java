@@ -20,7 +20,6 @@ import java.util.logging.Logger;
  *
  * <b>Revision:</b>
  * <br>
- * @date 26 May 2021<br>
  */
 public class App
 {
@@ -58,7 +57,7 @@ public class App
 
         try
         {
-            RankingCalculator calculator = new RankingCalculator(filename);
+            var calculator = new RankingCalculator(filename);
             calculator.calculateRanking();
         }
         catch (Exception ex)

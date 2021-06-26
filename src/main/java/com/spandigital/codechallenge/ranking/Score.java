@@ -20,7 +20,6 @@ import lombok.Data;
  *
  * <b>Revision:</b>
  * <br>
- * @date 27 May 2021<br>
  */
 @Data
 @AllArgsConstructor

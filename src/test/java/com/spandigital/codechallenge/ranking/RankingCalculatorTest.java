@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  *
  * <b>Revision:</b>
  * <br>
- * @date 26 May 2021<br>
  */
 class RankingCalculatorTest
 {
@@ -51,18 +51,15 @@ class RankingCalculatorTest
      * test_calculateRanking<br>
      * <br>
      *
-     * @return<br> <br>
+     * @return - a stream of arguments to be used in the <code>test_calculateRanking</code> test<br> <br>
      */
     static Stream<Arguments> test_calculateRanking()
     {
-        return Stream.of(Arguments.of(Arrays.asList("Lions 3, Snakes 3"), "1. Lions, 1 pt" + System.lineSeparator() + "1. Snakes, 1 pt"),
-                         Arguments.of(Arrays.asList("Lions 3, Snakes 1"), "1. Lions, 3 pts" + System.lineSeparator() + "2. Snakes, 0 pts"),
-                         Arguments.of(Arrays.asList("Lions 1, Snakes 3"), "1. Snakes, 3 pts" + System.lineSeparator() + "2. Lions, 0 pts"),
-                         Arguments.of(
-                                 Arrays.asList("Lions 3, Snakes 3", "Tarantulas 1, FC Awesome 0", "Lions 1, FC Awesome 1", "Tarantulas 3, Snakes 1",
-                                               "Lions 4, Grouches 0"),
-                                 "1. Tarantulas, 6 pts" + System.lineSeparator() + "2. Lions, 5 pts" + System.lineSeparator() + "3. FC Awesome, 1 pt"
-                                 + System.lineSeparator() + "3. Snakes, 1 pt" + System.lineSeparator() + "5. Grouches, 0 pts"));
+        return Stream.of(Arguments.of(Collections.singletonList("Lions 3, Snakes 3"), "1. Lions, 1 pt" + System.lineSeparator() + "1. Snakes, 1 pt"),
+                         Arguments.of(Collections.singletonList("Lions 3, Snakes 1"), "1. Lions, 3 pts" + System.lineSeparator() + "2. Snakes, 0 pts"),
+                         Arguments.of(Collections.singletonList("Lions 1, Snakes 3"), "1. Snakes, 3 pts" + System.lineSeparator() + "2. Lions, 0 pts"),
+                         Arguments.of(Arrays.asList("Lions 3, Snakes 3", "Tarantulas 1, FC Awesome 0", "Lions 1, FC Awesome 1", "Tarantulas 3, Snakes 1", "Lions 4, Grouches 0"),
+                                      "1. Tarantulas, 6 pts" + System.lineSeparator() + "2. Lions, 5 pts" + System.lineSeparator() + "3. FC Awesome, 1 pt" + System.lineSeparator() + "3. Snakes, 1 pt" + System.lineSeparator() + "5. Grouches, 0 pts"));
     }
 
     /**
@@ -88,9 +85,9 @@ class RankingCalculatorTest
      * test_calculateRanking<br>
      * <br>
      *
-     * @param match
-     * @param expected
-     * @throws Exception<br> <br>
+     * @param matches  -
+     * @param expected -
+     * @throws Exception <br> <br>
      */
     @ParameterizedTest
     @MethodSource
@@ -107,8 +104,8 @@ class RankingCalculatorTest
      * readOutputFile<br>
      * <br>
      *
-     * @return
-     * @throws IOException<br> <br>
+     * @return -
+     * @throws IOException <br> <br>
      */
     private String readOutputFile() throws IOException
     {

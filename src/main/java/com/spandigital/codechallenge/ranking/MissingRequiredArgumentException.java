@@ -17,7 +17,6 @@ package com.spandigital.codechallenge.ranking;
  *
  * <b>Revision:</b>
  * <br>
- * @date 27 May 2021<br>
  */
 public class MissingRequiredArgumentException extends RuntimeException
 {

@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
  *
  * <b>Revision:</b>
  * <br>
- * @date 02 Jun 2021<br>
  */
 public class FileUtil
 {
@@ -41,8 +40,8 @@ public class FileUtil
      * getFilePath<br>
      * <br>
      *
-     * @param file
-     * @return<br> <br>
+     * @param file - File name for path to get
+     * @return Path of the filename given<br> <br>
      */
     public static Path getFilePath(String file)
     {
@@ -57,12 +56,12 @@ public class FileUtil
      * createOutputFile<br>
      * <br>
      *
-     * @param rankedTeams
+     * @param rankedTeams - List of the teams in their ranked order
      * @throws IOException <br> <br>
      */
     public static void createOutputFile(List<Team> rankedTeams) throws IOException
     {
-        Path outputFilePath = getFilePath(RankingCalculator.OUTPUT_FILE);
+        var outputFilePath = getFilePath(RankingCalculator.OUTPUT_FILE);
         Files.write(outputFilePath, rankedTeams.stream()
                                                .map(Team::toString)
                                                .collect(Collectors.toList()));

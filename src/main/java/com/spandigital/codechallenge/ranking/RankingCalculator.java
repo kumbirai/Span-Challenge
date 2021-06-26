@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
  *
  * <b>Revision:</b>
  * <br>
- * @date 26 May 2021<br>
  */
 public class RankingCalculator
 {
@@ -53,8 +52,6 @@ public class RankingCalculator
 
     /**
      * Constructor: @param filename
-     *
-     * @throws IOException
      */
     public RankingCalculator(String filename)
     {
@@ -78,7 +75,7 @@ public class RankingCalculator
      * <br><br>
      * <br>
      *
-     * @throws IOException
+     * @throws IOException - An exception thrown if there is a problem with the match file
      */
     public void calculateRanking() throws IOException
     {
@@ -103,8 +100,8 @@ public class RankingCalculator
     {
         String[] teamScores = match.split(",");
 
-        Score teamA = extractTeamNameAndScore(teamScores[0]);
-        Score teamB = extractTeamNameAndScore(teamScores[1]);
+        var teamA = extractTeamNameAndScore(teamScores[0]);
+        var teamB = extractTeamNameAndScore(teamScores[1]);
 
         if (teamA.getScore() == teamB.getScore())
         {
@@ -128,7 +125,7 @@ public class RankingCalculator
      * extractTeamNameAndScore<br>
      * <br>
      *
-     * @param teamScore
+     * @param teamScore -
      * @return <br> <br>
      */
     private Score extractTeamNameAndScore(String teamScore)
@@ -147,7 +144,7 @@ public class RankingCalculator
      * updateTeamScores<br>
      * <br>
      *
-     * @param points<br> <br>
+     * @param points - <br> <br>
      */
     private void updateTeamScores(List<Team> points)
     {
@@ -180,36 +177,36 @@ public class RankingCalculator
     private List<Team> rankTeams()
     {
         List<Team> pointsRankedList = teams.stream()
-                                       .sorted(Comparator.comparing(Team::getPoints)
-                                                         .reversed()
-                                                         .thenComparing(Team::getName))
-                                       .collect(Collectors.toList());
+                                           .sorted(Comparator.comparing(Team::getPoints)
+                                                             .reversed()
+                                                             .thenComparing(Team::getName))
+                                           .collect(Collectors.toList());
 
         ToIntFunction<Team> pointsExtractor = Team::getPoints;
         SortedMap<Integer, List<Team>> rankingsMap = new TreeMap<>();
         pointsRankedList.forEach(team ->
-                             {
-                                 Integer points = pointsExtractor.applyAsInt(team);
+                                 {
+                                     Integer points = pointsExtractor.applyAsInt(team);
 
-                                 if (rankingsMap.isEmpty())
-                                 {
-                                     rankingsMap.put(1, new LinkedList<>());
-                                 }
-                                 else
-                                 {
-                                     Integer rank = rankingsMap.lastKey();
-                                     List<Team> teamsList = rankingsMap.get(rank);
-                                     if (!points.equals(pointsExtractor.applyAsInt(teamsList.get(0))))
+                                     if (rankingsMap.isEmpty())
                                      {
-                                         rankingsMap.put(rank + teamsList.size(), new LinkedList<>());
+                                         rankingsMap.put(1, new LinkedList<>());
                                      }
-                                 }
+                                     else
+                                     {
+                                         Integer rank = rankingsMap.lastKey();
+                                         List<Team> teamsList = rankingsMap.get(rank);
+                                         if (!points.equals(pointsExtractor.applyAsInt(teamsList.get(0))))
+                                         {
+                                             rankingsMap.put(rank + teamsList.size(), new LinkedList<>());
+                                         }
+                                     }
 
-                                 Integer lastKey = rankingsMap.lastKey();
-                                 team.setRank(lastKey);
-                                 rankingsMap.get(lastKey)
-                                         .add(team);
-                             });
+                                     Integer lastKey = rankingsMap.lastKey();
+                                     team.setRank(lastKey);
+                                     rankingsMap.get(lastKey)
+                                                .add(team);
+                                 });
 
         return pointsRankedList;
     }
