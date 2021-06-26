@@ -55,11 +55,7 @@ class RankingCalculatorTest
      */
     static Stream<Arguments> test_calculateRanking()
     {
-        return Stream.of(Arguments.of(Collections.singletonList("Lions 3, Snakes 3"), "1. Lions, 1 pt" + System.lineSeparator() + "1. Snakes, 1 pt"),
-                         Arguments.of(Collections.singletonList("Lions 3, Snakes 1"), "1. Lions, 3 pts" + System.lineSeparator() + "2. Snakes, 0 pts"),
-                         Arguments.of(Collections.singletonList("Lions 1, Snakes 3"), "1. Snakes, 3 pts" + System.lineSeparator() + "2. Lions, 0 pts"),
-                         Arguments.of(Arrays.asList("Lions 3, Snakes 3", "Tarantulas 1, FC Awesome 0", "Lions 1, FC Awesome 1", "Tarantulas 3, Snakes 1", "Lions 4, Grouches 0"),
-                                      "1. Tarantulas, 6 pts" + System.lineSeparator() + "2. Lions, 5 pts" + System.lineSeparator() + "3. FC Awesome, 1 pt" + System.lineSeparator() + "3. Snakes, 1 pt" + System.lineSeparator() + "5. Grouches, 0 pts"));
+        return Stream.of(Arguments.of(Collections.singletonList("Lions 3, Snakes 3"), "1. Lions, 1 pt" + System.lineSeparator() + "1. Snakes, 1 pt"), Arguments.of(Collections.singletonList("Lions 3, Snakes 1"), "1. Lions, 3 pts" + System.lineSeparator() + "2. Snakes, 0 pts"), Arguments.of(Collections.singletonList("Lions 1, Snakes 3"), "1. Snakes, 3 pts" + System.lineSeparator() + "2. Lions, 0 pts"), Arguments.of(Arrays.asList("Lions 3, Snakes 3", "Tarantulas 1, FC Awesome 0", "Lions 1, FC Awesome 1", "Tarantulas 3, Snakes 1", "Lions 4, Grouches 0"), "1. Tarantulas, 6 pts" + System.lineSeparator() + "2. Lions, 5 pts" + System.lineSeparator() + "3. FC Awesome, 1 pt" + System.lineSeparator() + "3. Snakes, 1 pt" + System.lineSeparator() + "5. Grouches, 0 pts"));
     }
 
     /**
@@ -110,9 +106,9 @@ class RankingCalculatorTest
     private String readOutputFile() throws IOException
     {
         return Files.readAllLines(FileSystems.getDefault()
-                                             .getPath("", RankingCalculator.OUTPUT_FILE)
-                                             .toAbsolutePath())
-                    .stream()
-                    .collect(Collectors.joining(System.lineSeparator()));
+                .getPath("", RankingCalculator.OUTPUT_FILE)
+                .toAbsolutePath())
+                .stream()
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }

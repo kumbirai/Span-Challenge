@@ -7,14 +7,7 @@ package com.spandigital.codechallenge.ranking;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
@@ -133,9 +126,8 @@ public class RankingCalculator
         int idx = teamScore.lastIndexOf(" ");
 
         return new Score(teamScore.substring(0, idx)
-                                  .trim(),
-                         Integer.parseInt(teamScore.substring(idx)
-                                                   .trim()));
+                .trim(), Integer.parseInt(teamScore.substring(idx)
+                .trim()));
     }
 
     /**
@@ -149,21 +141,21 @@ public class RankingCalculator
     private void updateTeamScores(List<Team> points)
     {
         points.forEach(team ->
-                       {
-                           Optional<Team> findTeam = teams.stream()
-                                                          .filter(t -> t.getName()
-                                                                        .equalsIgnoreCase(team.getName()))
-                                                          .findFirst();
-                           if (findTeam.isPresent())
-                           {
-                               findTeam.get()
-                                       .addPoints(team.getPoints());
-                           }
-                           else
-                           {
-                               teams.add(team);
-                           }
-                       });
+        {
+            Optional<Team> findTeam = teams.stream()
+                    .filter(t -> t.getName()
+                            .equalsIgnoreCase(team.getName()))
+                    .findFirst();
+            if (findTeam.isPresent())
+            {
+                findTeam.get()
+                        .addPoints(team.getPoints());
+            }
+            else
+            {
+                teams.add(team);
+            }
+        });
     }
 
     /**
@@ -177,36 +169,36 @@ public class RankingCalculator
     private List<Team> rankTeams()
     {
         List<Team> pointsRankedList = teams.stream()
-                                           .sorted(Comparator.comparing(Team::getPoints)
-                                                             .reversed()
-                                                             .thenComparing(Team::getName))
-                                           .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Team::getPoints)
+                        .reversed()
+                        .thenComparing(Team::getName))
+                .collect(Collectors.toList());
 
         ToIntFunction<Team> pointsExtractor = Team::getPoints;
         SortedMap<Integer, List<Team>> rankingsMap = new TreeMap<>();
         pointsRankedList.forEach(team ->
-                                 {
-                                     Integer points = pointsExtractor.applyAsInt(team);
+        {
+            Integer points = pointsExtractor.applyAsInt(team);
 
-                                     if (rankingsMap.isEmpty())
-                                     {
-                                         rankingsMap.put(1, new LinkedList<>());
-                                     }
-                                     else
-                                     {
-                                         Integer rank = rankingsMap.lastKey();
-                                         List<Team> teamsList = rankingsMap.get(rank);
-                                         if (!points.equals(pointsExtractor.applyAsInt(teamsList.get(0))))
-                                         {
-                                             rankingsMap.put(rank + teamsList.size(), new LinkedList<>());
-                                         }
-                                     }
+            if (rankingsMap.isEmpty())
+            {
+                rankingsMap.put(1, new LinkedList<>());
+            }
+            else
+            {
+                Integer rank = rankingsMap.lastKey();
+                List<Team> teamsList = rankingsMap.get(rank);
+                if (!points.equals(pointsExtractor.applyAsInt(teamsList.get(0))))
+                {
+                    rankingsMap.put(rank + teamsList.size(), new LinkedList<>());
+                }
+            }
 
-                                     Integer lastKey = rankingsMap.lastKey();
-                                     team.setRank(lastKey);
-                                     rankingsMap.get(lastKey)
-                                                .add(team);
-                                 });
+            Integer lastKey = rankingsMap.lastKey();
+            team.setRank(lastKey);
+            rankingsMap.get(lastKey)
+                    .add(team);
+        });
 
         return pointsRankedList;
     }

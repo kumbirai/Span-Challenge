@@ -46,8 +46,8 @@ public class FileUtil
     public static Path getFilePath(String file)
     {
         return FileSystems.getDefault()
-                          .getPath("", file)
-                          .toAbsolutePath();
+                .getPath("", file)
+                .toAbsolutePath();
     }
 
     /**
@@ -63,7 +63,7 @@ public class FileUtil
     {
         var outputFilePath = getFilePath(RankingCalculator.OUTPUT_FILE);
         Files.write(outputFilePath, rankedTeams.stream()
-                                               .map(Team::toString)
-                                               .collect(Collectors.toList()));
+                .map(Team::toString)
+                .collect(Collectors.toList()));
     }
 }
