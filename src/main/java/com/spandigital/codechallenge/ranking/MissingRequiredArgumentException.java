@@ -20,16 +20,16 @@ package com.spandigital.codechallenge.ranking;
  */
 public class MissingRequiredArgumentException extends RuntimeException
 {
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = -4339596283898606878L;
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -4339596283898606878L;
 
-    /**
-     * Constructor: @param message
-     */
-    public MissingRequiredArgumentException(String message)
-    {
-        super(message);
-    }
+	/**
+	 * Constructor: @param message
+	 */
+	public MissingRequiredArgumentException(String message)
+	{
+		super(message);
+	}
 }

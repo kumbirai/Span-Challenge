@@ -27,43 +27,43 @@ import java.util.stream.Collectors;
  */
 public class FileUtil
 {
-    /**
-     * Constructor:
-     */
-    private FileUtil()
-    {
-    }
+	/**
+	 * Constructor:
+	 */
+	private FileUtil()
+	{
+	}
 
-    /**
-     * Purpose:<br>
-     * <br>
-     * getFilePath<br>
-     * <br>
-     *
-     * @param file - File name for path to get
-     * @return Path of the filename given<br> <br>
-     */
-    public static Path getFilePath(String file)
-    {
-        return FileSystems.getDefault()
-                .getPath("", file)
-                .toAbsolutePath();
-    }
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * getFilePath<br>
+	 * <br>
+	 *
+	 * @param file - File name for path to get
+	 * @return Path of the filename given<br> <br>
+	 */
+	public static Path getFilePath(String file)
+	{
+		return FileSystems.getDefault()
+				.getPath("", file)
+				.toAbsolutePath();
+	}
 
-    /**
-     * Purpose:<br>
-     * <br>
-     * createOutputFile<br>
-     * <br>
-     *
-     * @param rankedTeams - List of the teams in their ranked order
-     * @throws IOException <br> <br>
-     */
-    public static void createOutputFile(List<Team> rankedTeams) throws IOException
-    {
-        var outputFilePath = getFilePath(RankingCalculator.OUTPUT_FILE);
-        Files.write(outputFilePath, rankedTeams.stream()
-                .map(Team::toString)
-                .collect(Collectors.toList()));
-    }
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * createOutputFile<br>
+	 * <br>
+	 *
+	 * @param rankedTeams - List of the teams in their ranked order
+	 * @throws IOException <br> <br>
+	 */
+	public static void createOutputFile(List<Team> rankedTeams) throws IOException
+	{
+		var outputFilePath = getFilePath(RankingCalculator.OUTPUT_FILE);
+		Files.write(outputFilePath, rankedTeams.stream()
+				.map(Team::toString)
+				.collect(Collectors.toList()));
+	}
 }

@@ -25,6 +25,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class Score
 {
-    private String name;
-    private int score;
+	private String name;
+	private int score;
 }

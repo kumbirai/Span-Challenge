@@ -25,32 +25,32 @@ import lombok.Data;
 @AllArgsConstructor
 public class Team
 {
-    private int rank;
-    private String name;
-    private int points;
+	private int rank;
+	private String name;
+	private int points;
 
-    /**
-     * Purpose:<br>
-     * <br>
-     * addPoints<br>
-     * <br>
-     *
-     * @param addPoints<br> <br>
-     */
-    public void addPoints(int addPoints)
-    {
-        this.points += addPoints;
-    }
+	/**
+	 * Purpose:<br>
+	 * <br>
+	 * addPoints<br>
+	 * <br>
+	 *
+	 * @param addPoints<br> <br>
+	 */
+	public void addPoints(int addPoints)
+	{
+		this.points += addPoints;
+	}
 
-    /**
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString()
-    {
-        return String.format("%s. %s, %s ", rank, name, points)
-                     .concat(points != 1 ? "pts" : "pt");
-    }
+	/**
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return String.format("%s. %s, %s ", rank, name, points)
+				.concat(points != 1 ? "pts" : "pt");
+	}
 }
