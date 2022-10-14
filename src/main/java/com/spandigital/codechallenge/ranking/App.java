@@ -57,8 +57,7 @@ public class App
 
         try
         {
-            var calculator = new RankingCalculator(filename);
-            calculator.calculateRanking();
+            new RankingCalculator(filename).calculateRanking();
         }
         catch (Exception ex)
         {
